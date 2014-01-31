@@ -53,5 +53,28 @@ Proc.new { |c| c == 'b' } === 'a'  # => false
 #  * Code loses portability
 #  * Harder to upgrade
 
+# Fancy literals
+# q is like single quotes
+# Q is like double quotes
+'a "b \"c\""'  # => "a \"b \\\"c\\\"\""
+%q[a "b 'c'"]  # => "a \"b 'c'\""
+%q(a "b 'c'")  # => "a \"b 'c'\""
+%q.a "b 'c'".  # => "a \"b 'c'\""
+%q(#{123}\n)   # => "\#{123}\\n"
+%Q(#{123}\n)   # => "123\n"
 
+# %w if for arrays of strings
+['a', 'b', 'c']  # => ["a", "b", "c"]
+%w(a b\n c)      # => ["a", "b\\n", "c"]
+%W(a b\n c)      # => ["a", "b\n", "c"]
+
+# %r for regex
+%r(1 2 3)m  # => /1 2 3/m
+
+# %x for console
+%x(pwd)  # => "/Users/josh/code/JSL/surfdome\n"
+
+# symbols
+%i(a b c\n)  # => [:a, :b, :"c\\n"]
+%I(a b c\n)  # => [:a, :b, :"c\n"]
 
