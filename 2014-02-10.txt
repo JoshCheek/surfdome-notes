@@ -1,0 +1,41 @@
+Understanding Spree
+  Built on Rails
+  Uses Engines
+    is a gem
+    Rails aware
+      normal gem structure
+      plus an app directory (mvc stuffs)
+      plus routes
+      plus db migrations
+
+  4 main engines
+    spree_core     - models, mailers, shared logic
+    spree_frontend - views and controllers for users
+    spree_backend  - admin views and controllers
+    spree_api      - api views are controllers
+
+  spree - "meta gem"
+
+
+-----
+
+
+Answering questions
+  Q: Does Spree structure its orders like Paulo wanted or like Orest wanted?
+  
+  go to shopping cart
+  speculate about where code is
+  check logs to see what controllers got hit
+  check out controller (bundle open spree_frontend)
+  look at the view as long as we're here (notice data-hooks)
+  follow that to orders - a cart is the current order
+  what is the logic for finding the order?
+  where is current_order method?
+    Not here, must be in spree_core
+  Lets just clone them all so its easier to search and navigate:
+    git clone https://github.com/spree/spree.git
+  cd there, ack for def current_order
+    we find it and glance through it.
+    Notice things like the order_id is stored in the session
+
+  A: A cart in Spree is the current order (Paulo's structure)
